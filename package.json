@@ -1,6 +1,6 @@
 {
   "name": "@o2team/images-meta",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "read and write images metadata",
   "main": "index.js",
   "scripts": {
