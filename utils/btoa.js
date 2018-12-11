@@ -1,4 +1,5 @@
 function main(str) {
+  // eslint-disable-next-line no-undef
   if (typeof btoa === 'function') return btoa(str)
 
   var buffer

@@ -4,6 +4,9 @@
   "description": "read and write images metadata",
   "main": "index.js",
   "scripts": {
+    "bump": "standard-version",
+    "fix": "eslint --fix .",
+    "release": "git push --follow-tags origin master && npm publish --registry=http://registry.m.jd.com",
     "test": "mocha"
   },
   "repository": {
@@ -26,9 +29,17 @@
     "png-chunks-extract": "^1.0.0"
   },
   "devDependencies": {
+    "eslint": "^5.10.0",
     "fs-extra": "^7.0.1",
     "intelli-espower-loader": "^1.0.1",
     "mocha": "^5.2.0",
-    "power-assert": "^1.6.1"
+    "power-assert": "^1.6.1",
+    "replace": "^1.0.0",
+    "standard-version": "^4.4.0"
+  },
+  "standard-version": {
+    "scripts": {
+      "postchangelog": "replace 'https://git.jd.com/o2team/images-meta/commits/' 'http://git.jd.com/o2team/images-meta/commit/' CHANGELOG.md"
+    }
   }
 }

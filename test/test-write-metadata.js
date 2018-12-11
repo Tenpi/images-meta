@@ -16,7 +16,9 @@ let outputFormats = ['base64', 'binaryString', 'buffer', 'dataUrl']
 
 describe('writeMeta()', () => {
   before(() => {
-    try { fs.removeSync(outputDir) } catch (e) {}
+    try { fs.removeSync(outputDir) } catch (e) {
+      // do nothing
+    }
     try {
       fs.mkdirSync(outputDir)
     } catch (e) {
