@@ -6,6 +6,7 @@
   "module": "dist/index.esm.js",
   "browser": "dist/index.umd.js",
   "scripts": {
+    "build": "rollup -c",
     "bump": "standard-version",
     "fix": "eslint --fix .",
     "release": "git push --follow-tags origin master && npm publish --registry=http://registry.m.jd.com",
