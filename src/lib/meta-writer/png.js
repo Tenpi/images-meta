@@ -11,10 +11,30 @@ const {
 function metaWriter (data, metaData, outputFormat = 'buffer') {
   let buffer = convertToBuffer(data)
   let chunks = extract(buffer)
+
+  // remove all duplicated meta first
+  for (let i = chunks.length - 1; i >= 0; i--) {
+    const chunk = chunks[i]
+    if (chunk.name !== 'tEXt') {
+      continue
+    }
+    let ret = text.decode(chunk.data)
+
+    for (let j = 0; j < metaData.length; j++) {
+      const meta = metaData[j]
+      if (meta.name === ret.keyword && meta.value === ret.text) {
+        chunks.splice(i, 1)
+        break
+      }
+    }
+  }
+
+  // insert meta
   for (let i = 0; i < metaData.length; i++) {
     let meta = metaData[i]
     chunks.splice(-1, 0, text.encode(meta.name, meta.value))
   }
+
   let arrayBuffer = encode(chunks)
   if (outputFormat === 'binaryString') return convertToBinaryString(arrayBuffer)
   if (outputFormat === 'base64') return btoa(convertToBinaryString(arrayBuffer))

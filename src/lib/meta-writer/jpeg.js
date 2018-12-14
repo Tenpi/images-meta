@@ -12,9 +12,9 @@ function metaWriter (data, metaData, outputFormat = 'buffer') {
   let ret = load(binaryStr)
   let zeroth = ret['0th'] || {}
   let GPS = ret.GPS || {}
-  let Exif = Object.assign({
+  let Exif = Object.assign({}, ret.Exif, {
     [TagValues.ExifIFD.UserComment]: encodeMetadata(metaData)
-  }, ret.Exif || {})
+  })
   ret = {'0th': zeroth, Exif, GPS}
   let exifStr = dump(ret)
   binaryStr = insert(exifStr, binaryStr)

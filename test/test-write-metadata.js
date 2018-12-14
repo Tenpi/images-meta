@@ -1,5 +1,6 @@
 const path = require('path')
 const fs = require('fs-extra')
+const assert = require('power-assert')
 const { readMeta, writeMeta } = require('../src')
 const { assertMetadata } = require('./_helper')
 const DATAURLS = require('./resource/dataUrls')
@@ -81,5 +82,21 @@ describe('writeMeta()', () => {
         assertMetadata(metadata, MetadataArr)
       }
     }
+  })
+
+  it.only('should overwrite metadata with written PNG file', () => {
+    let buffer = fs.readFileSync(path.join(__dirname, 'resource', 'pic_with_meta.png'))
+    let newBuffer = writeMeta(buffer, 'image/png', MetadataArr, 'buffer')
+    let metadata = readMeta(newBuffer, 'image/png')
+    assertMetadata(metadata, MetadataArr)
+    assert(metadata.length === 4)
+  })
+
+  it.only('should overwrite metadata with written JPEG file', () => {
+    let buffer = fs.readFileSync(path.join(__dirname, 'resource', 'pic_with_meta.jpeg'))
+    let newBuffer = writeMeta(buffer, 'image/jpeg', MetadataArr, 'buffer')
+    let metadata = readMeta(newBuffer, 'image/jpeg')
+    assertMetadata(metadata, MetadataArr)
+    assert(metadata.length === 4)
   })
 })
