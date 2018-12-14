@@ -1,6 +1,6 @@
 const path = require('path')
 const fs = require('fs-extra')
-const { readMeta, writeMeta } = require('../')
+const { readMeta, writeMeta } = require('../src')
 const { assertMetadata } = require('./_helper')
 const DATAURLS = require('./resource/dataUrls')
 

@@ -1,7 +1,7 @@
 const path = require('path')
 const fs = require('fs')
 const { assertMetadata } = require('./_helper')
-const { readMeta } = require('../')
+const { readMeta } = require('../src')
 const DATAURLS = require('./resource/dataUrls')
 
 describe('readMeta()', () => {
