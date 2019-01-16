@@ -8,28 +8,9 @@ const {
   convertToBinaryString,
 } = require('../data-converter')
 
-const NON_ASCII_REGEX = /[^\u0021-\u007E]/g
-
 function metaWriter (data, metaData, outputFormat = 'buffer') {
   let buffer = convertToBuffer(data)
   let chunks = extract(buffer)
-
-  // 预处理 metaData
-  let filteredMeta = []
-  for (let i = metaData.length - 1; i >= 0; i--) {
-    const meta = metaData[i]
-    let name = String(meta.name).replace(NON_ASCII_REGEX, '')
-    if (name.length === 0) {
-      continue
-    }
-
-    let value = String(meta.value).replace(NON_ASCII_REGEX, '')
-    if (value.length === 0) {
-      value = 'null'
-    }
-
-    filteredMeta.push({ name, value })
-  }
 
   // remove all duplicated meta first
   for (let i = chunks.length - 1; i >= 0; i--) {
@@ -39,8 +20,8 @@ function metaWriter (data, metaData, outputFormat = 'buffer') {
     }
     let ret = text.decode(chunk.data)
 
-    for (let j = 0; j < filteredMeta.length; j++) {
-      const meta = filteredMeta[j]
+    for (let j = 0; j < metaData.length; j++) {
+      const meta = metaData[j]
       if (meta.name === ret.keyword && meta.value === ret.text) {
         chunks.splice(i, 1)
         break
@@ -49,9 +30,14 @@ function metaWriter (data, metaData, outputFormat = 'buffer') {
   }
 
   // insert meta
-  for (let i = 0; i < filteredMeta.length; i++) {
-    let meta = filteredMeta[i]
-    chunks.splice(-1, 0, text.encode(meta.name, meta.value))
+  for (let i = 0; i < metaData.length; i++) {
+    let meta = metaData[i]
+    
+    let value = escape(meta.value)
+    if (value.length === 0) {
+      value = 'null'
+    }
+    chunks.splice(-1, 0, text.encode(escape(meta.name), value))
   }
 
   let arrayBuffer = encode(chunks)

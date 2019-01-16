@@ -2,7 +2,7 @@ const path = require('path')
 const fs = require('fs-extra')
 const assert = require('power-assert')
 const { readMeta, writeMeta } = require('../src')
-// const { assertMetadata } = require('./_helper')
+const { assertMetadata } = require('./_helper')
 const DATAURLS = require('./resource/dataUrls')
 
 let MetadataArr = [
@@ -14,6 +14,7 @@ let MetadataArr = [
   {name: '一些中文 chinese name', value: 'some chinese 中文'},
   {name: '一些中文 chinese name', value: '全中文'},
   {name: '全中文', value: '一些中文 chinese name'},
+  {name: 'empty field', value: ''},
 ]
 
 let outputDir = path.join(__dirname, 'tmp')
@@ -43,7 +44,7 @@ describe('writeMeta()', () => {
         fs.writeFileSync(file, result)
         let metadata = readMeta(fs.readFileSync(file), 'image/jpeg')
         assert(['owner', 'time'].every(name => metadata.find(item => item.name === name)))
-        assert(metadata.length === 15)
+        assertMetadata(metadata, MetadataArr)
       }
     }
   })
@@ -58,7 +59,7 @@ describe('writeMeta()', () => {
         fs.writeFileSync(file, result)
         let metadata = readMeta(fs.readFileSync(file), 'image/png')
         assert(['owner', 'time'].every(name => metadata.find(item => item.name === name)))
-        assert(metadata.length === 7)
+        assertMetadata(metadata, MetadataArr)
       }
     }
   })
@@ -72,7 +73,7 @@ describe('writeMeta()', () => {
         let file = path.join(outputDir, `pic2_${format}.jpg`)
         fs.writeFileSync(file, result)
         let metadata = readMeta(fs.readFileSync(file), 'image/jpeg')
-        assert(metadata.length === 12)
+        assertMetadata(metadata, MetadataArr)
       }
     }
   })
@@ -86,7 +87,7 @@ describe('writeMeta()', () => {
         let file = path.join(outputDir, `pic2_${format}.png`)
         fs.writeFileSync(file, result)
         let metadata = readMeta(fs.readFileSync(file), 'image/png')
-        assert(metadata.length === 6)
+        assertMetadata(metadata, MetadataArr)
       }
     }
   })
@@ -95,13 +96,13 @@ describe('writeMeta()', () => {
     let buffer = fs.readFileSync(path.join(__dirname, 'resource', 'pic_with_meta.png'))
     let newBuffer = writeMeta(buffer, 'image/png', MetadataArr, 'buffer')
     let metadata = readMeta(newBuffer, 'image/png')
-    assert(metadata.length === 7)
+    assertMetadata(metadata, MetadataArr)
   })
 
   it('should overwrite metadata with written JPEG file', () => {
     let buffer = fs.readFileSync(path.join(__dirname, 'resource', 'pic_with_meta.jpeg'))
     let newBuffer = writeMeta(buffer, 'image/jpeg', MetadataArr, 'buffer')
     let metadata = readMeta(newBuffer, 'image/jpeg')
-    assert(metadata.length === 9)
+    assertMetadata(metadata, MetadataArr)
   })
 })

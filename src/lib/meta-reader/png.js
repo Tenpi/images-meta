@@ -13,8 +13,8 @@ function metaReader(data) {
   }).map(function (chunk) {
     let ret = text.decode(chunk.data)
     return {
-      name: ret.keyword,
-      value: ret.text
+      name: unescape(ret.keyword),
+      value: unescape(ret.text)
     }
   })
 }

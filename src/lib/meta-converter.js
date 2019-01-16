@@ -4,7 +4,7 @@ const SIG = 'Mt_'
 
 function encodeMetadata (metadata) {
   return SIG + metadata.map(meta => {
-    return `${meta.name}${WORD_SEPARATOR}${meta.value}`
+    return `${escape(meta.name)}${WORD_SEPARATOR}${escape(meta.value)}`
   }).join(META_SEPARATOR)
 }
 
@@ -12,7 +12,7 @@ function decodeMetadata (string) {
   if (!string.startsWith(SIG)) return string
   return string.slice(SIG.length).split(META_SEPARATOR).map(metaStr => {
     let [name, value] = metaStr.split(WORD_SEPARATOR)
-    return {name, value}
+    return {name: unescape(name), value: unescape(value)}
   })
 }
 

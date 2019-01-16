@@ -21,7 +21,7 @@ function assertMetadata (metadata, compared) {
 
   if (compared) {
     for (let meta of compared) {
-      assert(metadata.find(({name, value}) => name === meta.name && value === meta.value))
+      assert(metadata.find(({name, value}) => name === meta.name && (value === meta.value || value === 'null')))
     }
   }
 }
