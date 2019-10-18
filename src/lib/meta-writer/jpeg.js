@@ -1,4 +1,4 @@
-const { load, TagValues, dump, insert } = require('piexifjs')
+const { load, ExifIFD, dump, insert } = require('piexifjs')
 
 const btoa = require('../../utils/btoa')
 const {
@@ -13,7 +13,7 @@ function metaWriter (data, metaData, outputFormat = 'buffer') {
   let zeroth = ret['0th'] || {}
   let GPS = ret.GPS || {}
   let Exif = Object.assign({}, ret.Exif, {
-    [TagValues.ExifIFD.UserComment]: encodeMetadata(metaData)
+    [ExifIFD.UserComment]: encodeMetadata(metaData)
   })
   ret = {'0th': zeroth, Exif, GPS}
   let exifStr = dump(ret)

@@ -1,4 +1,4 @@
-const { load, Tags } = require('piexifjs')
+const { load, TAGS } = require('piexifjs')
 
 const {
   convertToBinaryString,
@@ -13,11 +13,11 @@ function metaReader (data) {
     let obj = ret[key]
     let dict
     if (key === '0th') {
-      dict = Tags.Image
+      dict = TAGS.Image
     } else if (key === 'Exif') {
-      dict = Tags.Exif
+      dict = TAGS.Exif
     } else {
-      dict = Tags.GPS
+      dict = TAGS.GPS
     }
     for (let id in obj) {
       let def = dict[id]

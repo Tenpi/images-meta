@@ -2354,9 +2354,10 @@ path-type@^3.0.0:
   dependencies:
     pify "^3.0.0"
 
-piexifjs@^2.0.0-beta.7:
-  version "2.0.0-beta.7"
-  resolved "http://registry.npm.taobao.org/piexifjs/download/piexifjs-2.0.0-beta.7.tgz#8e4bcd0fca832103ee2344b936feb7edc9ca3e50"
+piexifjs@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.npmjs.org/piexifjs/-/piexifjs-1.0.6.tgz#883811d73f447218d0d06e9ed7866d04533e59e0"
+  integrity sha512-0wVyH0cKohzBQ5Gi2V1BuxYpxWfxF3cSqfFXfPIpl5tl9XLS5z4ogqhUCD20AbHi0h9aJkqXNJnkVev6gwh2ag==
 
 pify@^2.0.0, pify@^2.3.0:
   version "2.3.0"
