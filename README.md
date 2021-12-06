@@ -1,4 +1,4 @@
-Image Meta
+Images Meta
 ========
 
 支持将一些元数据写入图片中，并读取出来。用法参见 `test/`。
@@ -15,12 +15,10 @@ Image Meta
 - 图片上传至 JFS，元数据仍然会保留
 
 # 下载
-JNPM 项目地址：http://npm.m.jd.com/package/@o2team/images-meta
-   
 ```bash
-npm install @o2team/images-meta --registry=http://registry.m.jd.com
+npm install @o2team/images-meta
 ```
 
 # 作者
 
-- 朱奕腾 [zhuyiteng@jd.com](mailto:zhuyiteng@jd.com)
+- chuyik

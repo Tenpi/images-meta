@@ -1,5 +1,5 @@
 {
-  "name": "@o2team/images-meta",
+  "name": "images-meta",
   "version": "0.3.1",
   "description": "read and write images metadata",
   "main": "dist/index.cjs.js",
@@ -9,13 +9,10 @@
     "build": "rollup -c",
     "bump": "standard-version",
     "fix": "eslint --fix .",
-    "release": "git push --follow-tags origin master && npm publish --registry=http://registry.m.jd.com",
+    "release": "git push --follow-tags origin master && npm publish",
     "test": "mocha"
   },
-  "repository": {
-    "type": "git",
-    "url": "git@git.jd.com:o2team/images-meta.git"
-  },
+  "repository": "chuyik/images-meta",
   "keywords": [
     "images",
     "meta",
@@ -45,10 +42,5 @@
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-node-resolve": "^4.0.0",
     "standard-version": "^4.4.0"
-  },
-  "standard-version": {
-    "scripts": {
-      "postchangelog": "replace 'https://git.jd.com/o2team/images-meta/commits/' 'http://git.jd.com/o2team/images-meta/commit/' CHANGELOG.md"
-    }
   }
 }
