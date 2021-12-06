@@ -20,7 +20,7 @@
     "jpg",
     "png"
   ],
-  "author": "zhuyiteng",
+  "author": "chuyik",
   "license": "GPL-3.0",
   "dependencies": {
     "piexifjs": "^1.0.6",
