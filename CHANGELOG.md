@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.4.0"></a>
+# 0.4.0 (2021-12-06)
+
+
+### Bug Fixes
+
+* failed to overwrite metadata ([4ec33d9](https://github.com/chuyik/images-meta/commit/4ec33d9))
+* 修复中文 meta 导致报错的问题 ([76212d9](https://github.com/chuyik/images-meta/commit/76212d9))
+* 降级 piexifjs 至 1.x 以支持 IE9 ([09e5bfc](https://github.com/chuyik/images-meta/commit/09e5bfc))
+
+
+### Features
+
+* initial commit ([26b66a5](https://github.com/chuyik/images-meta/commit/26b66a5))
+* use rollup for packaging ([195fe19](https://github.com/chuyik/images-meta/commit/195fe19))
+* 支持中文属性 ([5831de8](https://github.com/chuyik/images-meta/commit/5831de8))
+
+
+
 <a name="0.3.1"></a>
 ## [0.3.1](https://git.jd.com/o2team/images-meta/compare/v0.3.0...v0.3.1) (2019-10-18)
 
