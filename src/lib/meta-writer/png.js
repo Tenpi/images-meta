@@ -33,11 +33,11 @@ function metaWriter (data, metaData, outputFormat = 'buffer') {
   for (let i = 0; i < metaData.length; i++) {
     let meta = metaData[i]
     
-    let value = escape(meta.value)
+    let value = meta.value
     if (value.length === 0) {
       value = 'null'
     }
-    chunks.splice(-1, 0, text.encode(escape(meta.name), value))
+    chunks.splice(-1, 0, text.encode(meta.name, value))
   }
 
   let arrayBuffer = encode(chunks)

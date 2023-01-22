@@ -3,9 +3,9 @@ const META_SEPARATOR = '_|'
 const SIG = 'Mt_'
 
 function encodeMetadata (metadata) {
-  return SIG + metadata.map(meta => {
-    return `${escape(meta.name)}${WORD_SEPARATOR}${escape(meta.value)}`
-  }).join(META_SEPARATOR)
+  return metadata.map(meta => {
+    return `${meta.value}`
+  }).join("")
 }
 
 function decodeMetadata (string) {
